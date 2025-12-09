@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>The End (but not really)</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Special+Elite&family=Parisienne&display=swap" rel="stylesheet">
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+/* GLOBAL */
+body {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    background: radial-gradient(circle at center, #1b1410, #050304 75%);
+    font-family: 'Special Elite', monospace;
+    /* 👇 changed this line */
+    overflow-x: hidden;      /* was: overflow: hidden; */
+    position: relative;
+    color: #f7f0e5;
+}
+
+/* Film grain / vignette */
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    background:
+        radial-gradient(circle at center, transparent 30%, rgba(0,0,0,0.8) 90%);
+    mix-blend-mode: normal;
+    z-index: 1;
+}
+
+/* Subtle grain */
+body::after {
+    content: "";
+    position: fixed;
+    inset: -20px;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 160 160' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.2' numOctaves='3' stitchTiles='noStitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.15'/%3E%3C/svg%3E");
+    opacity: 0.35;
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Floating light specks */
+@keyframes floatSpeck {
+    0% { transform: translateY(0) translateX(0); opacity: 0; }
+    20% { opacity: 0.7; }
+    100% { transform: translateY(-120vh) translateX(20px); opacity: 0; }
+}
+
+.speck {
+    position: fixed;
+    bottom: -20px;
+    width: 4px;
+    height: 4px;
+    background: rgba(255, 255, 220, 0.8);
+    border-radius: 50%;
+    box-shadow: 0 0 12px rgba(255, 255, 220, 0.9);
+    animation: floatSpeck 12s linear infinite;
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Layout */
+.section {
+    position: relative;
+    z-index: 2;
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 60px 20px 40px;
+    text-align: center;
+}
+
+/* Film frame */
+.frame {
+    position: relative;
+    padding: 50px 30px 40px;
+    border-radius: 10px;
+    border: 2px solid rgba(240, 230, 210, 0.7);
+    box-shadow:
+        0 0 0 12px rgba(0, 0, 0, 0.7),
+        0 0 40px rgba(0,0,0,0.9);
+    background: radial-gradient(circle at center, #211713, #120c0a);
+}
+
+/* Film sprockets */
+.frame::before,
+.frame::after {
+    content: "";
+    position: absolute;
+    top: 12px;
+    bottom: 12px;
+    width: 18px;
+    border: 2px dashed rgba(220,210,195,0.6);
+}
+
+.frame::before {
+    left: -32px;
+}
+
+.frame::after {
+    right: -32px;
+}
+
+/* "The End" text */
+.end-title {
+    font-family: 'Parisienne', cursive;
+    font-size: 44px;
+    margin-bottom: 8px;
+}
+
+.end-subtitle {
+    font-size: 15px;
+    opacity: 0.85;
+    margin-bottom: 26px;
+}
+
+/* Message */
+.end-message {
+    font-family: 'Parisienne', cursive;
+    font-size: 22px;
+    line-height: 1.8;
+    max-width: 600px;
+    margin: 0 auto 24px;
+}
+
+/* Tiny line */
+.divider {
+    width: 120px;
+    height: 1px;
+    margin: 20px auto;
+    background: linear-gradient(to right, transparent, #f7f0e5, transparent);
+}
+
+/* Credits */
+.credits {
+    font-size: 13px;
+    opacity: 0.85;
+    line-height: 1.6;
+}
+
+/* Buttons */
+.actions {
+    margin-top: 24px;
+    display: flex;
+    justify-content: center;
+    gap: 14px;
+    flex-wrap: wrap;
+}
+
+.btn-link {
+    text-decoration: none;
+}
+
+.btn {
+    padding: 9px 16px;
+    border-radius: 999px;
+    border: 1px solid rgba(247,240,229,0.8);
+    background: transparent;
+    color: #f7f0e5;
+    font-size: 13px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
+}
+
+.btn:hover {
+    background: #f7f0e5;
+    color: #1b1410;
+    transform: translateY(-1px);
+}
+
+/* Small footer */
+.footer-note {
+    margin-top: 18px;
+    font-size: 11px;
+    opacity: 0.7;
+}
+</style>
+</head>
+
+<body>
+
+<!-- floating specks -->
+<div class="speck" style="left: 15%; animation-delay: 0s;"></div>
+<div class="speck" style="left: 30%; animation-delay: 2s;"></div>
+<div class="speck" style="left: 50%; animation-delay: 4s;"></div>
+<div class="speck" style="left: 70%; animation-delay: 1s;"></div>
+<div class="speck" style="left: 85%; animation-delay: 3s;"></div>
+
+<section class="section">
+    <div class="frame">
+        <div class="end-title">The End</div>
+        <div class="end-subtitle">(of the website, not of us.)</div>
+
+        <div class="divider"></div>
+
+        <div class="end-message">
+            If you’ve reached here, it means you went through every little page,  
+            every reason, every picture, every line – and that alone makes me smile.<br><br>
+
+            This may not be a grand party or a huge surprise,  
+            but it’s a small corner of the internet that belongs just to you –  
+            filled with the kind of love, care and gratitude  
+            that I sometimes struggle to say out loud.<br><br>
+
+            I hope on the days you feel low, tired, or not enough,  
+            you can come back here and be reminded of this one simple truth:  
+            you are deeply, deeply cherished – exactly as you are.
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="credits">
+            Script, feelings & mehnat: Tanmay<br>
+            Starring: Anshika, the b'day girll!.<br>
+            Special thanks: synauris 🎀
+        </div>
+<!-- Funny ending add-on -->
+<div style="margin-top:28px; text-align:center; font-family:'Special Elite', monospace; font-size:15px; color:#e7dcca; opacity:0.95; line-height:1.6;">
+    📝 <strong>Friendship Contract Update:</strong><br>
+    ✔ Renewed for another year<br>
+    ✔ No exit clause included<br>
+    ✔ Emotional support + reels included<br><br>
+    <span style="font-size:13px; opacity:0.85;">
+        *Failure to respond to messages within a reasonable time may result in dramatic overthinking.*
+    </span><br>
+    <span style="font-size:12px; opacity:0.75;">
+        **By continuing to be my best and favourite person, you agree to yearly birthday websites, and dher sari baatein ❤️🧿**
+    </span>
+</div>
+
+
+        <div class="actions">
+            <a href="index.html" class="btn-link">
+                <button class="btn">Back to the first page</button>
+            </a>
+            <a href="heartfelt.html" class="btn-link">
+                <button class="btn">Read the message again</button>
+            </a>
+        </div>
+    </div>
+
+    <div class="footer-note">
+        fade to black · roll credits · but the bond continues off-screen ♡
+    </div>
+</section>
+
+</body>
+</html>

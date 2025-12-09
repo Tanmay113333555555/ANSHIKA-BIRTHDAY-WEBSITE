@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>For You, Anshika</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Special+Elite&family=Parisienne&display=swap" rel="stylesheet">
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+/* GLOBAL */
+body {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    background:
+        radial-gradient(circle at top left, rgba(255,255,255,0.4), transparent 60%),
+        radial-gradient(circle at bottom right, rgba(255,255,255,0.3), transparent 60%),
+        #e4d2b0;
+    background-attachment: fixed;
+    font-family: 'Special Elite', monospace;
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* Soft vignette frame */
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    box-shadow: inset 0 0 120px rgba(0,0,0,0.35);
+    opacity: 0.75;
+    z-index: 0;
+}
+
+/* Floating lights */
+@keyframes floatLight {
+    0% {
+        transform: translateY(0) scale(0.6);
+        opacity: 0;
+    }
+    20% {
+        opacity: 0.8;
+    }
+    100% {
+        transform: translateY(-120vh) scale(1);
+        opacity: 0;
+    }
+}
+
+.light {
+    position: fixed;
+    bottom: -40px;
+    width: 14px;
+    height: 14px;
+    background: rgba(255, 255, 220, 0.7);
+    border-radius: 50%;
+    box-shadow: 0 0 18px rgba(255, 255, 220, 0.9);
+    animation: floatLight 10s linear infinite;
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* Layout */
+.section {
+    position: relative;
+    z-index: 2;
+    max-width: 750px;
+    margin: 0 auto;
+    padding: 40px 20px 60px;
+}
+
+/* Top nav / back link */
+.top-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 18px;
+    font-size: 14px;
+    color: #3f2c1d;
+}
+
+.back-link {
+    text-decoration: none;
+    color: #3f2c1d;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 10px;
+    border-radius: 999px;
+    border: 1px dotted rgba(80,55,35,0.7);
+    background: rgba(249, 237, 215, 0.8);
+}
+
+.back-link:hover {
+    background: rgba(236, 219, 190, 0.9);
+}
+
+/* Label */
+.letter-label {
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: #4b3726;
+    opacity: 0.9;
+}
+
+/* Letter panel */
+.letter-panel {
+    position: relative;
+    padding: 35px 30px 28px;
+    background: #f7ecd4;
+    border-radius: 10px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.35);
+    overflow: hidden;
+}
+
+/* Notebook lines */
+.letter-panel::before {
+    content: "";
+    position: absolute;
+    inset: 18px 18px 18px 26px;
+    background-image: repeating-linear-gradient(
+        to bottom,
+        rgba(120,90,60,0.25),
+        rgba(120,90,60,0.25) 1px,
+        transparent 1px,
+        transparent 24px
+    );
+    opacity: 0.7;
+    pointer-events: none;
+}
+
+/* Left margin line */
+.letter-panel::after {
+    content: "";
+    position: absolute;
+    top: 18px;
+    bottom: 18px;
+    left: 52px;
+    width: 2px;
+    background: rgba(180,90,90,0.5);
+    pointer-events: none;
+}
+
+/* Content inside */
+.letter-inner {
+    position: relative;
+    z-index: 1;
+}
+
+/* Paperclip */
+.paperclip {
+    position: absolute;
+    top: -10px;
+    right: 40px;
+    width: 30px;
+    height: 50px;
+    border: 2px solid rgba(90,70,50,0.7);
+    border-radius: 14px;
+    border-top-color: transparent;
+    border-left-color: transparent;
+    transform: rotate(18deg);
+    opacity: 0.8;
+}
+
+/* Dried flower */
+.flower {
+    position: absolute;
+    bottom: 10px;
+    right: 14px;
+    font-size: 22px;
+    opacity: 0.8;
+}
+
+/* Letter heading */
+.letter-heading {
+    font-family: 'Parisienne', cursive;
+    font-size: 30px;
+    color: #5b3a26;
+    margin-bottom: 16px;
+}
+
+/* Letter body */
+.letter-body {
+    font-family: 'Parisienne', cursive;
+    font-size: 20px;
+    color: #4c3523;
+    line-height: 1.7;
+    padding-left: 28px; /* after red margin line */
+}
+
+/* Signature */
+.signature {
+    margin-top: 22px;
+    text-align: right;
+    font-family: 'Parisienne', cursive;
+    font-size: 22px;
+    color: #4a2f1e;
+}
+</style>
+</head>
+
+<body>
+
+<!-- Floating lights -->
+<div class="light" style="left: 12%; animation-delay: 0s;"></div>
+<div class="light" style="left: 30%; animation-delay: 1.5s;"></div>
+<div class="light" style="left: 50%; animation-delay: 3s;"></div>
+<div class="light" style="left: 70%; animation-delay: 4.5s;"></div>
+<div class="light" style="left: 88%; animation-delay: 2.5s;"></div>
+
+<section class="section">
+
+    <div class="top-bar">
+        <a href="index.html" class="back-link">
+            <span>←</span> <span>Back to cover</span>
+        </a>
+        <div class="letter-label">Page 1 · A little letter for you</div>
+    </div>
+
+    <div class="letter-panel">
+        <div class="paperclip"></div>
+       <div style="text-align:center; margin-top:25px;">
+    
+    <div style="font-family:'Parisienne', cursive; 
+                font-size:20px; 
+                color:#5b3a26; 
+                opacity:0.8; 
+                margin-bottom:6px;">
+        Want to see what’s next?
+        <br>
+        Tap the little flower below ✿
+    </div>
+    
+    <a href="photos1.html" title="Open">
+        <div class="flower" style="cursor:pointer; transition:0.3s;">
+            ✿
+        </div>
+    </a>
+</div>
+
+
+
+        <div class="letter-inner">
+            <div class="letter-heading">Dear Anshika,</div>
+
+            <div class="letter-body">
+                Today isn’t just another date on the calendar –<br>
+                it’s the day someone very amazing and precious came to the world. 💌<br><br>
+
+                Thank you for every laugh, every “it’ll be okay”,<br>
+                every random conversation that made even ordinary days feel special.<br>
+                You have this quiet way of making everything softer, warmer,<br>
+                and a little more magical just by being there.<br><br>
+
+                This little vintage scrapbook is my way of pressing<br>
+                a little present for you as i can't travel 800 km (atleast rn) –<br>
+                
+            </div>
+
+            <div class="signature">
+                with all my patience,<br>
+                Tanmay
+            </div>
+<div style="text-align:center; font-size:13px; margin-top:10px; font-family:'Special Elite', monospace; color:#5b3a26; opacity:0.7;">
+    Yes, I typed all this.(Thoda bohot AI hai 🤔)
+</div>
+
+        </div>
+    </div>
+</section>
+
+</body>
+</html>

@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Just You, in Frames</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Special+Elite&family=Parisienne&display=swap" rel="stylesheet">
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+/* GLOBAL */
+body {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    background:
+        radial-gradient(circle at top left, rgba(255,255,255,0.4), transparent 60%),
+        radial-gradient(circle at bottom right, rgba(255,255,255,0.3), transparent 60%),
+        #e4d2b0;
+    background-attachment: fixed;
+    font-family: 'Special Elite', monospace;
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* Soft vignette frame */
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    box-shadow: inset 0 0 120px rgba(0,0,0,0.35);
+    opacity: 0.75;
+    z-index: 0;
+}
+
+/* Floating lights */
+@keyframes floatLight {
+    0% {
+        transform: translateY(0) scale(0.6);
+        opacity: 0;
+    }
+    20% {
+        opacity: 0.8;
+    }
+    100% {
+        transform: translateY(-120vh) scale(1);
+        opacity: 0;
+    }
+}
+
+.light {
+    position: fixed;
+    bottom: -40px;
+    width: 14px;
+    height: 14px;
+    background: rgba(255, 255, 220, 0.7);
+    border-radius: 50%;
+    box-shadow: 0 0 18px rgba(255, 255, 220, 0.9);
+    animation: floatLight 10s linear infinite;
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* Layout */
+.section {
+    position: relative;
+    z-index: 2;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 40px 20px 60px;
+}
+
+/* Top bar */
+.top-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 18px;
+    font-size: 14px;
+    color: #3f2c1d;
+}
+
+.back-link {
+    text-decoration: none;
+    color: #3f2c1d;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 10px;
+    border-radius: 999px;
+    border: 1px dotted rgba(80,55,35,0.7);
+    background: rgba(249, 237, 215, 0.8);
+}
+
+.back-link:hover {
+    background: rgba(236, 219, 190, 0.9);
+}
+
+/* Label */
+.page-label {
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: #4b3726;
+    opacity: 0.9;
+}
+
+/* Panel */
+.gallery-panel {
+    position: relative;
+    padding: 30px 26px 26px;
+    background: rgba(250, 240, 220, 0.95);
+    border-radius: 10px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.35);
+}
+
+/* Title */
+.gallery-title {
+    text-align: center;
+    font-family: 'Parisienne', cursive;
+    font-size: 30px;
+    color: #5b3a26;
+    margin-bottom: 12px;
+}
+
+.gallery-subtitle {
+    text-align: center;
+    font-size: 14px;
+    color: #4b3524;
+    margin-bottom: 24px;
+}
+
+/* Grid */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+}
+
+/* Frame for both image and video */
+.frame {
+    position: relative;
+    background: #fdfaf5;
+    border-radius: 6px;
+    box-shadow: 0 6px 16px rgba(0,0,0,0.3);
+    overflow: hidden;
+    /* Fixed aspect ratio: square-ish */
+    aspect-ratio: 4 / 5;
+}
+
+/* Inner pseudo-frame border */
+.frame::before {
+    content: "";
+    position: absolute;
+    inset: 6px;
+    border: 1px solid rgba(90, 70, 50, 0.35);
+    pointer-events: none;
+}
+
+/* Image & Video share same fit */
+.frame img,
+.frame video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* Video controls styling hint */
+.frame video {
+    background: #000;
+}
+
+/* Small label below panel */
+.bottom-note {
+    margin-top: 18px;
+    text-align: center;
+    font-size: 13px;
+    color: #4a3523;
+    opacity: 0.9;
+    font-family: 'Parisienne', cursive;
+}
+
+/* Responsive: on small screens, stack into 2 then 1 columns */
+@media (max-width: 820px) {
+    .grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 540px) {
+    .grid {
+        grid-template-columns: 1fr;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- Floating lights -->
+<div class="light" style="left: 12%; animation-delay: 0s;"></div>
+<div class="light" style="left: 30%; animation-delay: 1.5s;"></div>
+<div class="light" style="left: 50%; animation-delay: 3s;"></div>
+<div class="light" style="left: 70%; animation-delay: 4.5s;"></div>
+<div class="light" style="left: 88%; animation-delay: 2.5s;"></div>
+
+<section class="section">
+
+    <div class="top-bar">
+        <a href="letter.html" class="back-link">
+            <span>←</span> <span>Back to letter</span>
+        </a>
+        <div class="page-label">Page 2 · Just you, in frames</div>
+    </div>
+
+    <div class="gallery-panel">
+        <div class="gallery-title">Just you.</div>
+        <div class="gallery-subtitle">Sorryyy! I only had these few ones. 😭</div>
+
+        <div class="grid">
+            <!-- Row 1 -->
+            <div class="frame">
+                <!-- Photo 1 -->
+                <img src="C:\Users\tanma\Downloads\WhatsApp Image 2025-12-08 at 21.24.37_c8b33348.jpg" alt="Anshika 1">
+            </div>
+
+            <div class="frame">
+                <!-- Photo 2 -->
+                <img src="C:\Users\tanma\Downloads\WhatsApp Image 2025-12-08 at 21.24.35_9823d6ab.jpg" alt="Anshika 2">
+            </div>
+
+            <div class="frame">
+                <!-- Video (same frame size as others) -->
+                <video src="C:\Users\tanma\Downloads\whatsapp-video-2025-12-08-at-004823-257d431c-c0h85e1r_VtNtEzLa.mp4" controls></video>
+            </div>
+
+            <!-- Row 2 -->
+            <div class="frame">
+                <!-- Photo 3 -->
+                <img src="C:\Users\tanma\Downloads\WhatsApp Image 2025-12-08 at 00.48.21_f2d662b2.jpg" alt="Anshika 3">
+            </div>
+
+            <div class="frame">
+                <!-- Photo 4 -->
+                <img src="C:\Users\tanma\Downloads\WhatsApp Image 2025-12-08 at 00.48.24_b5f309ac.jpg" alt="Anshika 4">
+            </div>
+
+            <div class="frame">
+                <!-- Photo 5 -->
+                <img src="C:\Users\tanma\Downloads\WhatsApp Image 2025-12-08 at 00.48.21_20b14825.jpg" alt="Anshika 5">
+            </div>
+        </div>
+
+        <div class="bottom-note">
+     :)
+
+<!-- Extra note before clicking -->
+<div style="text-align:center; font-size:24px; margin-top:10px; color:#5a4433; font-family:'Parisienne', cursive; opacity:0.9; display:flex; justify-content:center; align-items:center; gap:6px;">
+    when you're ready, tap the little heart to turn the next page  (don’t worry, it won’t explode)
+    <a href="bestfriend.html" class="heart-link" title="Next page" style="text-decoration:none;">
+        <span class="heart-icon">♥</span>
+    </a>
+</div>
+
+
+    </div>
+</section>
+
+</body>
+</html>

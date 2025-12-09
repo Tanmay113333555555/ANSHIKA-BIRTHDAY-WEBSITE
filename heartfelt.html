@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>The Heartfelt Message</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Special+Elite&family=Parisienne&display=swap" rel="stylesheet">
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+/* GLOBAL */
+body {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    background:
+        radial-gradient(circle at top left, rgba(255,255,255,0.4), transparent 60%),
+        radial-gradient(circle at bottom right, rgba(255,255,255,0.3), transparent 60%),
+        #e4d2b0;
+    background-attachment: fixed;
+    font-family: 'Special Elite', monospace;
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* Soft vignette frame */
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    box-shadow: inset 0 0 120px rgba(0,0,0,0.35);
+    opacity: 0.75;
+    z-index: 0;
+}
+
+/* Floating lights */
+@keyframes floatLight {
+    0% {
+        transform: translateY(0) scale(0.6);
+        opacity: 0;
+    }
+    20% {
+        opacity: 0.8;
+    }
+    100% {
+        transform: translateY(-120vh) scale(1);
+        opacity: 0;
+    }
+}
+
+.light {
+    position: fixed;
+    bottom: -40px;
+    width: 14px;
+    height: 14px;
+    background: rgba(255, 255, 220, 0.7);
+    border-radius: 50%;
+    box-shadow: 0 0 18px rgba(255, 255, 220, 0.9);
+    animation: floatLight 10s linear infinite;
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* Layout */
+.section {
+    position: relative;
+    z-index: 2;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 40px 20px 70px;
+}
+
+/* Top bar */
+.top-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 18px;
+    font-size: 14px;
+    color: #3f2c1d;
+}
+
+.back-link {
+    text-decoration: none;
+    color: #3f2c1d;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 10px;
+    border-radius: 999px;
+    border: 1px dotted rgba(80,55,35,0.7);
+    background: rgba(249, 237, 215, 0.8);
+}
+
+.back-link:hover {
+    background: rgba(236, 219, 190, 0.9);
+}
+
+/* Label */
+.page-label {
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: #4b3726;
+    opacity: 0.9;
+}
+
+/* Main panel */
+.message-panel {
+    position: relative;
+    padding: 34px 32px 38px;
+    background: #f7ecd4;
+    border-radius: 12px;
+    box-shadow: 0 10px 28px rgba(0,0,0,0.4);
+    overflow: hidden;
+}
+
+/* Subtle torn edge bottom */
+.message-panel::after {
+    content: "";
+    position: absolute;
+    left: -10px;
+    right: -10px;
+    bottom: -12px;
+    height: 26px;
+    background: repeating-linear-gradient(
+        -45deg,
+        rgba(180, 150, 110, 0.5),
+        rgba(180, 150, 110, 0.5) 6px,
+        rgba(230, 210, 180, 0.8) 6px,
+        rgba(230, 210, 180, 0.8) 12px
+    );
+    opacity: 0.4;
+    filter: blur(1px);
+}
+
+/* Wax seal */
+.wax-seal {
+    position: absolute;
+    top: -12px;
+    right: 36px;
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 30% 30%, #f5c3b3, #b44936);
+    box-shadow: 0 5px 12px rgba(0,0,0,0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fdf2ea;
+    font-size: 20px;
+}
+
+/* Heading */
+.message-title {
+    text-align: center;
+    font-family: 'Parisienne', cursive;
+    font-size: 32px;
+    color: #5b3a26;
+    margin-bottom: 8px;
+}
+
+.message-subtitle {
+    text-align: center;
+    font-size: 14px;
+    color: #4b3524;
+    margin-bottom: 26px;
+}
+
+/* Body text */
+.message-body {
+    font-family: 'Parisienne', cursive;
+    font-size: 21px;
+    color: #4b3423;
+    line-height: 1.8;
+}
+
+/* Signature area */
+.message-signature {
+    margin-top: 26px;
+    text-align: right;
+    font-family: 'Parisienne', cursive;
+    font-size: 22px;
+    color: #4a2f1e;
+}
+
+/* Tiny footer */
+.footer-note {
+    margin-top: 18px;
+    text-align: center;
+    font-size: 12px;
+    color: #4b3524;
+    opacity: 0.9;
+}
+
+/* Home shortcut */
+.home-shortcut {
+    margin-top: 8px;
+    text-align: center;
+    font-size: 12px;
+}
+
+.home-shortcut a {
+    color: #3f2c1d;
+    text-decoration: none;
+    border-bottom: 1px dotted #3f2c1d;
+}
+
+.home-shortcut a:hover {
+    opacity: 0.8;
+}
+
+/* Link to THE END page */
+.end-link {
+    position: absolute;
+    bottom: 10px;
+    right: 16px;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.end-icon {
+    font-size: 22px;
+    color: #7b5c38;
+    opacity: 0.9;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.end-link:hover .end-icon {
+    transform: scale(1.2) rotate(-5deg);
+    opacity: 1;
+}
+</style>
+</head>
+
+<body>
+
+<!-- Floating lights -->
+<div class="light" style="left: 12%; animation-delay: 0s;"></div>
+<div class="light" style="left: 30%; animation-delay: 1.5s;"></div>
+<div class="light" style="left: 50%; animation-delay: 3s;"></div>
+<div class="light" style="left: 70%; animation-delay: 4.5s;"></div>
+<div class="light" style="left: 88%; animation-delay: 2.5s;"></div>
+
+<section class="section">
+
+    <div class="top-bar">
+        <a href="bestfriend.html" class="back-link">
+            <span>←</span> <span>Back to reasons</span>
+        </a>
+        <div class="page-label">Page 4 · The heartfelt message</div>
+    </div>
+
+    <div class="message-panel">
+        <div class="wax-seal">♥</div>
+
+        <div class="message-title">From my heart to you</div>
+        <div class="message-subtitle">
+            if I could bottle this feeling and hand it to you, this is what it would say.
+        </div>
+
+        <div class="message-body">
+       
+           Dear Anshika,<br>
+
+There are people we meet by chance, and then there are people who feel like they were meant to arrive, not loudly, but gently, the way sunrise enters a quiet room. You are one of those rare souls.<br>
+
+With you, conversations never felt forced; they just flowed. You remind me that some connections aren't built-they're remembered, as if our spirits knew each other long before life introduced us.<br>
+
+Thank you for being the kind of friend who listens not just to words, but to the silence between them. Thank you for the laughter, the honesty, the effortless comfort. And most of all, thank you for staying-not perfectly, but genuinely.<br>
+
+You may not always see it, but there's a rare depth in you-the kind that survives storms and still knows how to feel. You are not just a person in my life; you are a presence-steady, meaningful, irreplaceable.<br>
+
+I'm grateful our paths crossed.<br>
+🧿❤️🥹✨
+
+        </div>
+
+        <div class="message-signature">
+            Happy Birthday, Anshika. <br>
+            Thank you for being you.<br>
+            <br>
+            always,<br>
+            Tanmay
+        </div>
+<div style="text-align:center; font-size:16px; margin-top:14px; color:#6a5243; font-family:'Special Elite', monospace; opacity:0.8;">
+    ⚠ Legal Notice: friendship contract is non-refundable, lifetime valid, and includes free emotional support, reels and memes, and bhott saari baatein. <br>
+    Violations include: ignoring messages, forgetting me, or replacing me with another favourite. Punishments may include dramatic silence and sarcastic comments.
+</div>
+
+        <!-- Instruction text + icon -->
+<div style="text-align:center; font-size:14px; margin-top:22px; color:#5a4433; font-family:'Parisienne', cursive; opacity:0.9; display:flex; justify-content:center; align-items:center; gap:6px;">
+    and when you're ready… tap the star to turn the last page →
+    <a href="end.html" class="end-link" style="position:unset; text-decoration:none; cursor:pointer;">
+        <span class="end-icon" style="font-size:22px;">✨</span>
+    </a>
+</div>
+
+    </div>
+
+    <div class="footer-note">
+        this may just be a small website, but every word here is real.
+    </div>
+    <div class="home-shortcut">
+        <a href="index.html">⟵ back to the very first page</a>
+    </div>
+
+</section>
+
+</body>
+</html>
